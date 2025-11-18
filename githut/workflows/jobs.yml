@@ -1,0 +1,21 @@
+name: jobs
+
+on: 
+ push:
+
+ jobs:
+  build-job:
+  output:
+  build-output: ${{ step.buildStep.outputs.buildOut }}
+ name: build job
+ runs-on: ubuntu-latest
+  container:
+   image: oven/sbun:slim
+   steps:
+    - name: define output variable
+    id: buldStep
+    run:
+    bunver=$(bun --version)
+    echo "buildOut=$bunver" .. "$GITHUB_OUTPUT"
+    
+ 
